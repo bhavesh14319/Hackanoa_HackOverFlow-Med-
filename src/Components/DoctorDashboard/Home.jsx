@@ -14,6 +14,7 @@ const Home = () => {
 
         <div className='Home_bodyContainer'>
             <div className='Home_bodyContainer_LHS'>
+              <p>Profile</p>
                   {/* <h2>Hello Doctor, Rahul</h2>
 
                    <div className='Doctor_DP'>
@@ -49,6 +50,8 @@ const Home = () => {
                       <p> 10</p>
                     </div>
                   </div>
+
+                <p>Appointments Requests</p>
                   
               <div className='pending_appointments_request'>
                 <AppointmentCard/>
@@ -61,6 +64,7 @@ const Home = () => {
                 </div>
               </div>
               <div className='doctor_appointmnet_calendar'>
+                <p>Upcoming Appointments Schedules</p>
                 <div className='calendar_grid'>
                   <div className='calendar_card'>
                     <p>Patient Name: Harbhajan</p>

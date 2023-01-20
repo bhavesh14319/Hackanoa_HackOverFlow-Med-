@@ -1,6 +1,6 @@
 .Navbar_Container{
     max-width: 100%;
-    background-color: #5ADDA6;
+    background-color: #28D2D0;
     padding: 5px 50px;
     /* height: fit-content; */
     height: 10vh;
@@ -9,6 +9,9 @@
     align-items: center;
     color: white;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 60%);
+    border: 1px solid black;
+    border-radius: 5px;
+    /* background-image: url("https://i.imgur.com/pb1QP7d.png"); */
 }
 
 .Navbar_logo{

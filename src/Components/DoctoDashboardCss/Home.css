@@ -32,6 +32,16 @@
     
     /* justify-content: center; */
 }
+.Home_bodyContainer_LHS > p{
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    font-weight:bolder;
+    font-stretch: expanded;
+    margin-top: 20px;
+    font-weight:bolder;
+    font-stretch: expanded;
+}
 .Doctor_DP{
     margin-bottom: 25px;
 }
@@ -39,6 +49,10 @@
     margin-top: 25px;
     width: 100%;
     align-self: flex-start;   
+}
+.pending_appointments_request .smAppointmentCard{
+    
+    background-color: #fff;
 }
 
 
@@ -71,17 +85,22 @@
     background-color: #e8f1f2;
     height:45vh;
     border-radius: 10px;
-    max-height: 350px;
+    max-height: 315px;
     overflow-y: scroll;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 60%);
     
 }
-.pending_appointments_request::-webkit-scrollbar {
+.appointment_activity_area p{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.pending_appointments_request::-webkit-scrollbar, .calendar_grid::-webkit-scrollbar{
     background: rgb(255, 255, 255);
-    width: 5px;
+    width: 7px;
     /* height: 1px; */
 }
-.pending_appointments_request::-webkit-scrollbar-thumb {
+.pending_appointments_request::-webkit-scrollbar-thumb,.calendar_grid::-webkit-scrollbar-thumb {
     background: #8a8888;
     border-radius: 5px;
 }
@@ -140,7 +159,7 @@
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     padding: 20px;
-    /* max-height: 50vh; */
+    max-height: 75vh;
     overflow-y: scroll;
 }
 .calendar_card{
@@ -151,4 +170,10 @@
     color: white;
     border: 1px solid black;
 }
-
+.doctor_appointmnet_calendar > p{
+    text-align: center;
+    margin-left: 3rem;
+    font-size: 1.5rem;
+    font-weight:bolder;
+    font-stretch: expanded;
+}
