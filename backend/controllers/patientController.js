@@ -26,6 +26,7 @@ exports.Signup_Controller = async (req, res, next) => {
       state,
       pincode,
       address,
+      gender
     } = req.body;
 
     const patient = await allModels.Patient_Model.create({

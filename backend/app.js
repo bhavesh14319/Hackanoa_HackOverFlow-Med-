@@ -22,6 +22,11 @@ const Routes = require("./utils/allRoutes");
 // // Api routes
 app.use(Routes.doctor_Routes);
 app.use(Routes.patient_Routes);
+app.use(Routes.appointment_Routes);
+app.use(Routes.vital_Routes);
+app.use(Routes.prescription_Route);
+app.use(Routes.hospital_Route);
+app.use(Routes.medical_Route);
 
 //creating routes
 

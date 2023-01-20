@@ -107,6 +107,9 @@ exports.Profile_Controller = async (req, res, next) => {
       where: {
         id: req.userData.id,
       },
+      include : {
+        model:allModels.Hospital_Model
+      }
     });
 
     if (!doctor) res.json({ error: "SOmething went wrong" });

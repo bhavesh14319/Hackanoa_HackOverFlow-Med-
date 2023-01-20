@@ -22,6 +22,11 @@ const All_Model_Relationship = async () => {
     allModels.Patient_Model.hasMany(allModels.Vital_Model);
     allModels.Vital_Model.belongsTo(allModels.Patient_Model);
 
+    allModels.Hospital_Model.hasMany(allModels.Doctor_Model);
+    allModels.Doctor_Model.belongsTo(allModels.Doctor_Model);
+
+    
+
 
     await dbConnection.sync();
     console.log("Set Relation Sync Database");

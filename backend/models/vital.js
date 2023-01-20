@@ -24,7 +24,8 @@ const Vitals_Model = dbConnection.define("vitals", {
   swelling_joints: Sequelize.BOOLEAN,
   painful_walking: Sequelize.BOOLEAN,
   movement_stiffness: Sequelize.BOOLEAN,
-  predicted_disease : Sequelize.STRING
+  predicted_disease : Sequelize.STRING,
+  doctor_diagonsis : Sequelize.STRING
 });
 
 module.exports = Vitals_Model;

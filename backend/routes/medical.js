@@ -3,4 +3,9 @@ const router = express();
 
 const { query } = require("express-validator");
 
-router.get("/medical",)
+
+const medical_controller = require('../controllers/medicalController');
+
+router.get("/medical",medical_controller.Get_Medical);
+
+module.exports = router;
