@@ -1,5 +1,7 @@
 
 const allModels = require("../utils/allModels");
+const {Op} = require('sequelize');
+const randomstring = require('randomstring')
 
 // Patient Books the appointment
 exports.Book_Appointment = async(req,res,next) =>{
@@ -42,11 +44,16 @@ exports.View_Appointment = async(req,res,next) =>{
       const patient = req.userData;
 
     try {
+        const {appointmentId} = req.query;
 
-        const appointmentList = await allModels.Appointment_Model.find({
-            where:{
-                patientId : patient.id
-            },
+        let whereclause = {}
+        whereclause.patientId = patient.id
+        if(appointmentId)
+            whereclause.id = appointmentId;
+
+
+        const appointmentList = await allModels.Appointment_Model.findAll({
+            where:whereclause,
             include:{
                 model:allModels.Doctor_Model,
             },
@@ -70,17 +77,19 @@ exports.Doctor_View_Appointment = async(req,res,next) =>{
       }
 
       const doctor = req.userData;
-
+      const {appointmentId} = req.query;
       const {status} = req.body;
       let whereclause = {}
       whereclause.doctorId = doctor.id;
 
-      if(confirmed)
+      if(status)
             whereclause.status = status;
+      if(appointmentId)
+            whereclause.id = appointmentId;
 
     try {
 
-        const appointmentList = await allModels.Appointment_Model.find({
+        const appointmentList = await allModels.Appointment_Model.findAll({
             where:whereclause,
             include:{
                 model:allModels.Patient_Model
@@ -106,9 +115,24 @@ exports.Confirm_Appointment = async( req,res,next) =>{
     
     const doctor = req.userData;
 
-    const {appointmentId,startTime,endTime} = req.body;
+    let {appointmentId,startTime,endTime,type} = req.body;
+
+    startTime = new Date(startTime);
+    endTime = new Date(endTime);
     
     try {
+        if(type == 'reject'){
+            const confirm = await allModels.Appointment_Model.update({
+                status:'rejected',
+            },{
+                where:{
+                    id : appointmentId
+                }
+            }
+            );
+
+        return res.json({message:"Appointment rejected"});
+        }
         
         const isExist = await allModels.Appointment_Model.findOne({
             where:{
@@ -157,13 +181,21 @@ exports.Confirm_Appointment = async( req,res,next) =>{
               });
         const meetlink = `meet.jit.si/${slug}`
         const confirm = await allModels.Appointment_Model.update({
-            id : appointmentId
-        },{
             status:'approved',
             startTime,
             endTime,
             meetlink
-        });
+        },{
+            where:{
+                id : appointmentId
+            }
+        }
+        );
+
+        if(!confirm)
+            return res.json({error:"something went wrong."});
+        
+            return res.json({mesage:"Appointment confirmed."});
 
     } catch (error) {
         console.log(error)
