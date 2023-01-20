@@ -26,6 +26,7 @@ exports.Signup_Controller = async (req, res, next) => {
       state,
       pincode,
       address,
+      gender,
     } = req.body;
 
     const patient = await allModels.Patient_Model.create({
@@ -58,23 +59,23 @@ exports.Signin_Controller = async (req, res, next) => {
     return res.status(422).json({ errors: validationError.array() });
   }
 
-  if (!req.is_user_exist) {
-    return res.status(409).send({ error: "User doesn't Exist." });
-  }
+  // if (!req.is_user_exist) {
+  //   return res.status(409).send({ error: "User doesn't Exist." });
+  // }
 
   try {
-    
-    const { mobileNumber , aadharId} = req.body;
+    const { mobileNumber, aadharId } = req.body;
 
     const patient = await allModels.Patient_Model.findOne({
       where: {
         mobileNumber,
-        aadharId
+        aadharId,
       },
-
     });
-    if(!patient)
-        return res.json({error:"Mobile Number or AAdhar ID is wrong Please check"});
+    if (!patient)
+      return res.json({
+        error: "Mobile Number or AAdhar ID is wrong Please check",
+      });
 
     const token = jwt.sign(
       { userID: patient.id, mobileNumber: patient.mobileNumber },
@@ -82,37 +83,35 @@ exports.Signin_Controller = async (req, res, next) => {
     );
 
     return res.json({
-        message: 'Login successfully',
-            userID: KUser.id,
-            mobileNumber: KUser.mobileNumber,
-            dob: KUser.dateOfBirth,
-            gender: KUser.gender,
-            token
-    })
-
+      message: "Login successfully",
+      userID: patient.id,
+      mobileNumber: patient.mobileNumber,
+      dob: patient.dateOfBirth,
+      gender: patient.gender,
+      token,
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
-exports.Profile_Controller = async(req,res,next) =>{
-    const validationError = validationResult(req);
+exports.Profile_Controller = async (req, res, next) => {
+  const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
     return res.status(422).json({ errors: validationError.array() });
   }
 
   try {
-    
-    const patient = await allModels.Patient_Model.findOne({where:{
-        id:req.userData.id
-    }});
+    const patient = await allModels.Patient_Model.findOne({
+      where: {
+        id: req.userData.id,
+      },
+    });
 
-    if(!patient)
-        res.json({error:"SOmething went wrong"});
-    
-    res.json({data:patient});
-    
+    if (!patient) res.json({ error: "SOmething went wrong" });
+
+    res.json({ data: patient });
   } catch (error) {
     console.log(error);
   }
-}
+};
