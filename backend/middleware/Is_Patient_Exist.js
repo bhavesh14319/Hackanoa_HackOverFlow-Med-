@@ -13,9 +13,9 @@ const Is_Patient_Exist_Middlewre = async (req, res, next) => {
         return res.status(422).json({ errors: validationError.array() });
     }
 
-    const mobileNumber =  req.userID || req.body.userId;
+    const mobileNumber =  req.mobileNumber || req.body.mobileNumber;
     
-    const patient = await allModels.Doctor_Model.findOne({ where:{mobileNumber} });
+    const patient = await allModels.Patient_Model.findOne({ where:{mobileNumber} });
     
     if ( !patient ) {
         req.is_user_exist = false;

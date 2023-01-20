@@ -6,7 +6,7 @@ const { query } = require("express-validator");
 const appointment_control  = require("../controllers/appointmentController");
 
 // Patient Books the appointment.
-router.post("/p/book",appointment_control.Book_Appointment );
+router.post("/p/book",appointment_control.Book_Appointment);
 // PAtient can view 
 router.get("/p/book", appointment_control.View_Appointment);
 

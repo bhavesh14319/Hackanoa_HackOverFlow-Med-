@@ -84,10 +84,10 @@ exports.Signin_Controller = async (req, res, next) => {
 
     return res.json({
         message: 'Login successfully',
-            userID: KUser.id,
-            mobileNumber: KUser.mobileNumber,
-            dob: KUser.dateOfBirth,
-            gender: KUser.gender,
+            userID: patient.id,
+            mobileNumber: patient.mobileNumber,
+            dob: patient.dateOfBirth,
+            gender: patient.gender,
             token
     })
 
