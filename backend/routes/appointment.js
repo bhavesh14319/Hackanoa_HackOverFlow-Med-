@@ -6,12 +6,12 @@ const { query } = require("express-validator");
 // const  = require("../controllers/patientController");
 
 // Patient Books the appointment.
-router.post("/p/book", patient_controller.Signup_Controller);
+router.post("/p/book", );
 // PAtient can view 
-router.get("/p/book", patient_controller.Signin_Controller);
+router.get("/p/book", );
 
 // Doctor can approve the appointments
-router.post("/d/approve", patient_controller.Profile_Controller);
+router.post("/d/approve", );
 
 // DOctor can view his appointments
 router.get("/d/approve",)
