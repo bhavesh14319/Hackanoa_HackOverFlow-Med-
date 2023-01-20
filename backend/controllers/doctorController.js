@@ -33,6 +33,7 @@ exports.Signup_controller = async (req, res, next) => {
       gender: req.body.gender,
       specialization: req.body.specialization,
       experience: req.body.experience,
+      hospitalId : req.body.hospitalId
     });
 
     const token = jwt.sign(
@@ -41,14 +42,14 @@ exports.Signup_controller = async (req, res, next) => {
     );
 
     res.status(201).json({
-      message: "Signup successfully",
-      userID: KUser.id,
-      mobileNumber: KUser.mobileNumber,
-      name: KUser.firstName,
-      email: KUser.email,
-      DOB: KUser.DOB,
-      gender: KUser.gender,
-      token,
+      message: "Signup successfully.Please Login",
+      // userID: KUser.id,
+      // mobileNumber: KUser.mobileNumber,
+      // name: KUser.firstName,
+      // email: KUser.email,
+      // DOB: KUser.DOB,
+      // gender: KUser.gender,
+      // token,
     });
   } catch (error) {
     console.log(error);
@@ -67,7 +68,7 @@ exports.Signin_controller = async (req, res, next) => {
 
   try {
     const { mobileNumber, password } = req.body;
-    
+
     const KUser = await allModels.Doctor_Model.findOne({
       where: { mobileNumber: mobileNumber },
     });
@@ -107,9 +108,9 @@ exports.Profile_Controller = async (req, res, next) => {
       where: {
         id: req.userData.id,
       },
-      include : {
-        model:allModels.Hospital_Model
-      }
+      include: {
+        model: allModels.Hospital_Model,
+      },
     });
 
     if (!doctor) res.json({ error: "SOmething went wrong" });

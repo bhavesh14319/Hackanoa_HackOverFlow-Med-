@@ -23,7 +23,7 @@ const All_Model_Relationship = async () => {
     allModels.Vital_Model.belongsTo(allModels.Patient_Model);
 
     allModels.Hospital_Model.hasMany(allModels.Doctor_Model);
-    allModels.Doctor_Model.belongsTo(allModels.Doctor_Model);
+    allModels.Doctor_Model.belongsTo(allModels.Hospital_Model);
 
     
 
