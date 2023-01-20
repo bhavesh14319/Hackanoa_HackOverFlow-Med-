@@ -6,18 +6,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import swal from 'sweetalert';
+import AppointmentCard from '../Appointmentcard/AppointmentCard';
 import { Link } from "react-router-dom";
 import axios from '../../axios';
 
+
+
 const PatientHome = () => {
     const smallScreen = useMediaQuery('(max-width:600px)');
-    const[data,setData]=useState({});
-    const[patientData,setPateintData] = useState({});
-
-
-
-
 
     const AppointmentCard = () =>{
       return (
@@ -29,11 +25,16 @@ const PatientHome = () => {
       )
     }
 
-    const AppointmentModal = ( ) =>{
-      swal({
-        text: "Hello world!",
-      });
-    }
+    useEffect(()=>{
+      let data = JSON.parse(sessionStorage.getItem("Patient Data"));
+      if (data) {
+        setData(data);
+      }
+    },[])
+
+    useEffect(()=>{
+      getPatientDetails();
+    },[data])
 
     const getPatientDetails = async () =>{
       const response = await axios({
@@ -50,17 +51,6 @@ const PatientHome = () => {
         console.log(response.data);
       }
     }
-
-    useEffect(()=>{
-      let data = JSON.parse(sessionStorage.getItem("Patient Data"));
-      if (data) {
-        setData(data);
-      }
-    },[])
-
-    useEffect(()=>{
-      getPatientDetails();
-    },[data])
 
   return (
     <>

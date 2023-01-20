@@ -1,0 +1,4 @@
+.patient_profile_container .profile_card{
+    margin: 0rem !important;   
+    border: 1px solid red; 
+}

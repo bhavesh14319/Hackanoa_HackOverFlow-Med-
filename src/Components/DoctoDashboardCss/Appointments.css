@@ -1,0 +1,86 @@
+.symptoms_chips{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid black;
+    height:2.5rem;
+    justify-content: space-between;
+    border-radius: 0.6rem;
+    padding: 0.4rem;
+    width: 200px;
+    background: rgba(229, 229, 230, 0.5);
+    border: 1px solid #CACBCC;
+}
+.symptom_name{
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    color: #313233;
+    font-weight: 400;
+}
+.symptom_checkbox input{
+    margin: 0 20px;
+}
+input.checkbox_symptom{
+    transform: scale(1.7);
+}
+input[type=checkbox] {
+    accent-color: rgb(90, 186, 49);
+}
+.appointments_profiles_doctors .profile-card{
+    left: -135px;
+    top:95px;
+    background-image: url("https://i.imgur.com/9kN79I8.png");
+}
+.appointments_profiles_patients .profile-card{
+    left: 250px;
+    top:95px;
+    background-image: url("https://i.imgur.com/9kN79I8.png");
+}
+/* .Home_bodyContainer_RHS{
+    width: 60vw;
+} */
+.Home_bodyContainer_RHS>p{
+    text-align: center;
+    width: 40%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgb(8, 8, 8);
+    font-weight:bolder;
+    font-stretch: expanded;
+    margin-top: 20px;
+    font-weight:bolder;
+    font-stretch: expanded;
+}
+.appointments_RHS{
+    border-radius: 10px;
+    width: 60%;
+    margin:10px 0;
+}
+.appointments_RHS .patient_vitals{
+    width: 100%;
+    height: 40%;
+    background-color: azure;
+    border: 1px solid  black;
+    border-radius: 10px;
+}
+.appointments_RHS .appointment_details{
+    width: 100%;
+    height: 40%;
+    background-color: azure;
+    border: 1px solid  black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.approve,.reject{
+    width: 100%;
+    border-radius: 5px;
+    height: 50%;
+    color: white;
+}
+.approve{
+    background-color: green;
+}
+.reject{
+    background-color: rgb(239, 66, 44);
+}
