@@ -1,0 +1,27 @@
+.Navbar_Container{
+    max-width: 100%;
+    background-color: rgb(51, 28, 28);
+    padding: 5px 50px;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Navbar_logo{
+    width: 100px;
+    height: auto;
+}
+.Navbar_logo >img{
+    width: 100%;
+}
+
+.Navbar_ItemsContainer{
+    display: flex;
+    list-style: none;
+}
+
+.Navbar_Item{
+    padding-left:25px;
+    color: white;
+}

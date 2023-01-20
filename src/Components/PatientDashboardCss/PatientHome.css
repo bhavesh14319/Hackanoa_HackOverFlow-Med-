@@ -1,0 +1,146 @@
+.Patient_Body{
+    background-color: #f2f2f2;
+    max-height: 100vh;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.Patient_HomeCard{
+    max-width: 100vw;
+    margin: 30px 20px;
+    background-color: #ECFFFD;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+}
+
+.Patient_HomeCard_Heading{
+    font-size: 30px;
+    font-family:"Roboto";
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.Patient_HomeCard_SubHeading{
+    font-size: 20px;
+    font-family: "Roboto";
+}
+
+.Patient_HomeCard > span{
+    margin:  0;
+    display: flex;
+    text-align: center;
+    width: fit-content;
+    justify-content: center;
+}
+
+.Patient_BookBtn{
+    max-width: 100vw;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px 20px;
+    font-size: 25px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    color: #ffffff;
+   
+}
+
+.Section_Divider{
+    max-width:100vw;
+    height: 2px;
+    background-color: #0e323f;
+    margin: 0 20px;
+}
+
+
+.Appintment_Lable{
+    max-width: 100vw;
+    margin: 15px 15px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-size: 25px;
+}
+
+.Patient_AppointmentContainer{
+    max-width: 90vw;
+    margin: 20px;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-bottom: 2px solid #0e323f;
+}
+
+.smAppointmentCard{
+    background-color: #ECFFFD;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #0e323f;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+
+.animated-gradient {
+    animation: animateBg 5s linear infinite;
+    background-image: linear-gradient(0deg,#093c4ea9,#a6a7a6,#093c4ea9,#a6a7a6);
+    background-size: 100% 300%;
+  }
+  @keyframes animateBg {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+  }
+  
+.ShowMoreBtn{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: #ECFFFD;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom:1px solid #0e323f;
+}
+
+.smFooter{
+    max-width: 1000vw;
+    background-color: #125872;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.AboutContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.AboutContainer > p{
+    margin: 0;
+    text-align: center;
+}
+
+.IconsContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.IconsContainer  .MuiSvgIcon-root{
+    font-size: 35px;
+}
