@@ -1,7 +1,7 @@
 import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import logo from "../../Assets/logo.png"
-import logo1 from "../../Assets/i.jpeg"
+import logo1 from "../../Assets/i.png"
 import "../PatientDashboardCss/PatientNav.css"
 import MenuIcon from '@mui/icons-material/Menu';
 

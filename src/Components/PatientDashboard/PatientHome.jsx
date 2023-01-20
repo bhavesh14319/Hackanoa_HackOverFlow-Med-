@@ -6,26 +6,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import swal from 'sweetalert';
+import AppointmentCard from '../Appointmentcard/AppointmentCard';
+
+
 
 const PatientHome = () => {
     const smallScreen = useMediaQuery('(max-width:600px)');
 
-    const AppointmentCard = () =>{
-      return (
-        <div onClick={()=>{AppointmentModal()}} className='smAppointmentCard'>
-          <span>Patient Name</span>
-          <span>Date </span>
-          <span>Status</span>
-        </div>
-      )
-    }
-
-    const AppointmentModal = ( ) =>{
-      swal({
-        text: "Hello world!",
-      });
-    }
+    
 
   return (
     <>
