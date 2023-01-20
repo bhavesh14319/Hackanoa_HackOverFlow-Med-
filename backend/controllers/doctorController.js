@@ -102,6 +102,12 @@ exports.Profile_Controller = async (req, res, next) => {
   if (!validationError.isEmpty()) {
     return res.status(422).json({ errors: validationError.array() });
   }
+  
+  if (!req.is_user_exist) {
+    return res.status(409).send({ error: "User doesn't Exist." });
+  }
+
+
 
   try {
     const doctor = await allModels.Doctor_Model.findOne({

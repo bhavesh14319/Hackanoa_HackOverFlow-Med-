@@ -38,15 +38,19 @@ exports.get_Prescription = async (req, res, next) => {
         return res.status(409).send({ error: "User doesn't Exist." });
       }
 
-      const patientId = req.body.patientId || userData.Id
-
+      const patientId = req.query.patientId || req.userData.id;
+      
+      console.log(patientId)
     try {
         
-        const prescription = await allModels.Prescription_Model.find({
+        const prescription = await allModels.Prescription_Model.findAll({
             where:{
                 patientId
             },
-            order:[['endDate','desc']]
+            order:[['endDate','desc']],
+            include:{
+              model:allModels.Patient_Model
+            }
         });
 
         if(!prescription)

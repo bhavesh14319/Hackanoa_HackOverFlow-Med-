@@ -83,6 +83,7 @@ exports.Get_Vital = async(req,res,next) =>{
         return res.status(409).send({ error: "User doesn't Exist." });
       }
 
+      const patientId = req.body.patientId || req.userData.id
     try {
         
         const vitals = await allModels.Vital_Model.find({
@@ -95,7 +96,7 @@ exports.Get_Vital = async(req,res,next) =>{
         });
     
         if(!vitals)
-            return res.json({error:"SOmething went wrong"});
+            return res.json({error:"Something went wrong"});
         
         return res.json({data:vitals});
 

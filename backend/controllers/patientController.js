@@ -117,3 +117,37 @@ exports.Profile_Controller = async(req,res,next) =>{
     console.log(error);
   }
 }
+
+exports.Patient_Doctor = async(req,res,next) =>{
+  if (!req.is_user_exist) {
+    return res.status(409).send({ error: "User doesn't Exist." });
+  }
+  const doctor = req.userData;
+
+  try {
+
+    const patient = await allModels.Appointment_Model.findAll({
+      where:{
+        doctorId : doctor.id
+      },
+      attributes: ['patientId'],
+      include:{
+        model:allModels.Patient_Model,
+        include:[{
+          model:allModels.Prescription_Model,
+        },{
+          model:allModels.Vital_Model
+        }]
+      }
+    });
+
+    if(!patient)
+        return res.json({error:"Something went wrong"});
+
+    return res.json({data:patient});
+
+  } catch (error) {
+    console.log(error)
+    
+  }
+}

@@ -21,7 +21,7 @@ const Is_Patient_Exist_Middlewre = async (req, res, next) => {
         req.is_user_exist = false;
         return next();
     }
-
+    
     req.is_user_exist = true;
     req.userData = patient;
     return next();
