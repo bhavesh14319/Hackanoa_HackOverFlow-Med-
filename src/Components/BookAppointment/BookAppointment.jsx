@@ -21,9 +21,6 @@ const BookAppointment = () => {
 
     useEffect(()=>{
 
-
-
-        getHosp
     },[])
     
     const [vitals,setVitals] =useState({

@@ -9,11 +9,19 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import AppointmentCard from '../Appointmentcard/AppointmentCard';
 import { Link } from "react-router-dom";
 import axios from '../../axios';
-
+import swal from "sweetalert"
 
 
 const PatientHome = () => {
     const smallScreen = useMediaQuery('(max-width:600px)');
+    const[data,setData]=useState({});
+    const[patientData,setPateintData]=useState({});
+
+    const AppointmentModal = ( ) =>{
+      swal({
+        text: "Hello world!",
+      });
+    }
 
     const AppointmentCard = () =>{
       return (
@@ -24,6 +32,7 @@ const PatientHome = () => {
         </div>
       )
     }
+    
 
     useEffect(()=>{
       let data = JSON.parse(sessionStorage.getItem("Patient Data"));
