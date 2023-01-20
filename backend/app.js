@@ -18,9 +18,10 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.static("public"));
 
-// const Routes = require("./utils/allRoutes");
+const Routes = require("./utils/allRoutes");
 // // Api routes
-// app.use(Routes.log_Routes);
+app.use(Routes.doctor_Routes);
+app.use(Routes.patient_Routes);
 
 //creating routes
 
