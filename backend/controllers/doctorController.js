@@ -18,7 +18,8 @@ exports.Signup_controller = async (req, res, next) => {
 
   try {
     const Password = req.body.password;
-    const KHashPassword = await bcrypt.hash(Password, 12);
+    const salt = await bcrypt.genSalt(12);
+    const KHashPassword = await bcrypt.hash(Password, salt);
     const date = new Date(req.body.DOB);
     console.log(date);
     const KUser = await allModels.Doctor_Model.create({
@@ -66,7 +67,7 @@ exports.Signin_controller = async (req, res, next) => {
 
   try {
     const { mobileNumber, password } = req.body;
-
+    
     const KUser = await allModels.Doctor_Model.findOne({
       where: { mobileNumber: mobileNumber },
     });
@@ -80,7 +81,7 @@ exports.Signin_controller = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Signin successfully",
       userID: KUser.id,
       mobileNumber: KUser.mobileNumber,
