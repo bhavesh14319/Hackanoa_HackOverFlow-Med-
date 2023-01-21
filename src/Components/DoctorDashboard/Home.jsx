@@ -6,8 +6,45 @@ import Navbar from './Navbar'
 import logo from "../../Assets/logo.png"
 import AppointmentCard from '../Appointmentcard/AppointmentCard'
 import Doctorprofile from "../DoctorDashboard/Doctorprofile"
+import axios from '../../axios';
+import {useState,useEffect} from 'react';
 
 const Home = () => {
+
+  const[data,setData]=useState({});
+  const[appointmentData,setAppointmentData]=useState([]);
+
+  useEffect(()=>{
+    let data = JSON.parse(sessionStorage.getItem("Doctor Data"));
+    console.log(data);
+    if (data) {
+      setData(data);
+    }
+  },[]);
+
+
+
+  const getAppointmentDetails = async() =>{
+    const response = await axios({
+      method: "GET",
+      headers: { 
+        'Authorization': `Bearer ${data.token}`
+      },
+      url: encodeURI("d/approve?status=pending")
+
+    }).catch((error) => console.log(error));
+    if(response){
+      setAppointmentData(response.data.data);
+      // console.log(response.data.data);
+      // console.log(appointmentData
+    }
+  }
+
+  useEffect(()=>{
+    getAppointmentDetails();
+  },[data]);
+
+
   return (
     <div className='Home_body'>
         <Navbar/>
@@ -54,12 +91,11 @@ const Home = () => {
                 <p>Appointments Requests</p>
                   
               <div className='pending_appointments_request'>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
+                {appointmentData?.map(app =>{
+                  return <AppointmentCard prop={app} />
+                }) }
+            
+    
               </div>
                 </div>
               </div>

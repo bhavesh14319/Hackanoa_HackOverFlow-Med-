@@ -50,7 +50,7 @@ function Doctorprofile() {
           <div className="profile-desc">
             <p><span>Registration No:</span> <span>{doctorData.regNo}</span></p>
             <p><span>Mobile:</span> <span>{doctorData.mobileNumber}</span></p>
-            <p><span>Working At:</span> <span>{doctorData.hospital.name}</span></p>
+            <p><span>Working At:</span> <span>{doctorData.hospital?.name}</span></p>
             <p><span>Specialization:</span> <span>{doctorData.specialization}</span></p>
           </div>
         </div><hr></hr>

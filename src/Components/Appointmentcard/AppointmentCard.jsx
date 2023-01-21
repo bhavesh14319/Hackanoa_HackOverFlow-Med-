@@ -2,20 +2,24 @@ import React from 'react'
 import "../PatientDashboardCss/PatientHome.css"
 import swal from 'sweetalert';
 
-function AppointmentCard() {
+
+function AppointmentCard(props) {
     console.log(window.location)
   const AppointmentModal = ( ) =>{
     swal({
       text: "Hello world!",
     });
   }
+
+  console.log(props.prop?.redabledateTime?.date)
+
     return (
-        <div onClick={()=>{AppointmentModal()}} className='smAppointmentCard'>
-          <span>Patient Name</span>
-          <span>Date </span>
+        <div className='smAppointmentCard'>
+          <span>{props?.prop?.patient?.firstName} </span>
+          <span>{props.prop?.redabledateTime?.date}</span>
           <span>
-            <button className='approve'>Approve</button>
-            <button className='reject'>Reject</button>
+            <button onClick={()=>{AppointmentModal()}} className='approve'>Approve</button>
+            <button onClick={()=>{AppointmentModal()}} className='reject'>Reject</button>
           </span>
         </div>
       )
