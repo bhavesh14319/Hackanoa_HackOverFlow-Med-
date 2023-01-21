@@ -113,7 +113,7 @@
 }
 .active_card{
     border: 2px solid #18C278;
-    background-color: #32a85c !important;
+    background-color: #28D2D0 !important;
 }
 .pending_card{
     border: 2px solid  #E84042;
@@ -164,10 +164,10 @@
 }
 .calendar_card{
     text-align: center;
-    background-color: #0B8043;
+    background-color: #5EBC67;
     width: 100%;
     border-radius: 10px;
-    color: white;
+    color: black;
     border: 1px solid black;
 }
 .doctor_appointmnet_calendar > p{

@@ -79,8 +79,17 @@ input[type=checkbox] {
     color: white;
 }
 .approve{
-    background-color: green;
+    background-color: #5EBC67;
 }
 .reject{
     background-color: rgb(239, 66, 44);
+}
+.appointment_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.empty_calendar_card{
+    text-align: center;
 }
