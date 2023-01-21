@@ -62,6 +62,7 @@ input[type=checkbox] {
     background-color: azure;
     border: 1px solid  black;
     border-radius: 10px;
+    padding:5px;
 }
 .appointments_RHS .appointment_details{
     width: 100%;
@@ -69,7 +70,7 @@ input[type=checkbox] {
     background-color: azure;
     border: 1px solid  black;
     border-radius: 10px;
-    text-align: center;
+    /* text-align: center; */
     font-size: 1.2rem;
 }
 .approve,.reject{
@@ -92,4 +93,12 @@ input[type=checkbox] {
 }
 .empty_calendar_card{
     text-align: center;
+}
+.details{
+    padding-left: 10px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 0 0 20px;
 }

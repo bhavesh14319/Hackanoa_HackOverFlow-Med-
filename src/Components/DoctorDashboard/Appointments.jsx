@@ -185,9 +185,39 @@ function Appointments() {
                   <input type="checkbox" className="checkbox_symptom"></input>
                 </div>
               </div>
+              <div className="symptoms_chips">
+                <div className="symptom_name">Sweating</div>
+                <div className="symptom_checkbox">
+                  <input type="checkbox" className="checkbox_symptom"></input>
+                </div>
+              </div>
+              <div className="symptoms_chips">
+                <div className="symptom_name">Cold</div>
+                <div className="symptom_checkbox">
+                  <input type="checkbox" className="checkbox_symptom"></input>
+                </div>
+              </div>
+              <div className="symptoms_chips">
+                <div className="symptom_name">Fever</div>
+                <div className="symptom_checkbox">
+                  <input type="checkbox" className="checkbox_symptom"></input>
+                </div>
+              </div>
+              <div className="symptoms_chips">
+                <div className="symptom_name">Vomiting</div>
+                <div className="symptom_checkbox">
+                  <input type="checkbox" className="checkbox_symptom"></input>
+                </div>
+              </div>
             </div>
             <div className="appointment_details">
-              <div className="details">meet_link & appointmnet details</div>
+              <div className="details">
+                <p>Patient Name : Raju Sharma</p>
+                <p>Doctor Name : javed Ali</p>
+                <p>Meet Link : <u>https://meet.jit.si/cqFFiPVvNhuNAnxW</u></p>
+                <p>Timming : 4:00-5:00</p>
+                <p>Date : 28 Jan 2023</p>
+              </div>
             </div>
           </div>
         </div>

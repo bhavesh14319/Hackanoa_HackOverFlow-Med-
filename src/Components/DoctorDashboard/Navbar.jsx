@@ -54,7 +54,7 @@ const Navbar = () => {
                             :
                             ""                    
                 }
-                <li className='Navbar_Item'>
+                <li onClick={()=>{navigate("/Doctor/Login")}} className='Navbar_Item'>
                     Logout
                 </li>
             </ul>
