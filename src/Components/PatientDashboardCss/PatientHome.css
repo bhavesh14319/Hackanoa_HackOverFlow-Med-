@@ -78,9 +78,14 @@ a{
 .Patient_AppointmentContainer{
     max-width: 90vw;
     margin: 20px;
+    max-height: 40vh;
+    height: 40vh;
     padding: 10px 0;
     margin-top: 10px;
     border-bottom: 2px solid #0e323f;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* background-color: red; */
 }
 
 .smAppointmentCard{
@@ -143,15 +148,37 @@ a{
 .AboutContainer > p{
     margin: 0;
     text-align: center;
+    margin: 20px 0
 }
 
 .IconsContainer{
     display: flex;
     width: 100%;
+     ;
     justify-content: space-around;
 
 }
 
 .IconsContainer  .MuiSvgIcon-root{
     font-size: 35px;
+}
+
+.swal-title{
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Roboto';
+    text-decoration: underline;
+}
+
+.swal-text{
+    font-size: 20px;
+    width: 90%;
+    text-align: left;
+}
+
+.meet-text{
+    text-align: left;
+    width: 90%;
+    font-size: 20px;
+    padding-left: 10px;
 }

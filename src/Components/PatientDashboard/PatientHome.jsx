@@ -18,15 +18,24 @@ const PatientHome = () => {
     const[patientData,setPateintData]=useState({});
     const [appointments,setAppointMents] = useState([]);
 
-    const AppointmentModal = ( ) =>{
+    const AppointmentModal = (appointment) =>{
+      const el = document.createElement('div')
+      el.classList.add('meet-text')
+      el.innerHTML = `Meeting Link <a href=https://${appointment.meetlink} target="_blank">${appointment.meetlink}</a`;
       swal({
-        text: "Hello world!",
+        title:"Appointment Details",
+        text: `Patient Name: ${patientData.firstName + " "  +patientData.lastName}\n
+              Doctor Name: ${appointment.doctor.firstName + " " + appointment.doctor.lastName}\n
+              Appointment Status: ${appointment.status}`  ,
+             
+        content : el,
+        className:"appointment-modal"
       });
     }
 
-    const AppointmentCard = ({DoctorName,AppointmentDate,AppointmentStatus}) =>{
+    const AppointmentCard = ({DoctorName,AppointmentDate,AppointmentStatus,appointment}) =>{
       return (
-        <div onClick={()=>{AppointmentModal()}} className='smAppointmentCard'>
+        <div onClick={()=>{AppointmentModal(appointment)}} className='smAppointmentCard'>
           <span>{DoctorName}</span>
           <span>{AppointmentDate}</span>
           <span>{AppointmentStatus}</span>
@@ -106,14 +115,14 @@ const PatientHome = () => {
                   {appointments && appointments?.map((appointment)=>{
                     return(
                       <AppointmentCard DoctorName={appointment.doctor.firstName + " "+ appointment.doctor.lastName} AppointmentDate={appointment.redabledateTime.date}
-                       AppointmentStatus={appointment.status} />
+                       AppointmentStatus={appointment.status} appointment={appointment} />
                     )
                   })}
                     {/* <AppointmentCard />
                     <AppointmentCard />
                     <AppointmentCard />
                     <AppointmentCard /> */}
-                    <p className='ShowMoreBtn'>Show More</p>
+                    {/* <p className='ShowMoreBtn'>Show More</p> */}
                 </div>
 
                 <div className='smFooter'>
