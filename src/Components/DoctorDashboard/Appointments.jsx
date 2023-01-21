@@ -4,6 +4,7 @@ import "../DoctoDashboardCss/Appointments.css";
 import AppointmentCard from "../Appointmentcard/AppointmentCard";
 import Doctorprofile from "../DoctorDashboard/Doctorprofile";
 import Navbar from "./Navbar";
+import Patientprofilecard from "../PatientDashboard/Patientprofilecard";
 
 function Appointments() {
   return (
@@ -37,7 +38,7 @@ function Appointments() {
         <div className="Home_bodyContainer_RHS">
           <p>Patients Profile</p>
           <div className="appointments_profiles_patients">
-            <Doctorprofile />
+            <Patientprofilecard />
           </div>
           {/* <div className='doctor_appointmnet_calendar'>
         <div className='calendar_grid'>

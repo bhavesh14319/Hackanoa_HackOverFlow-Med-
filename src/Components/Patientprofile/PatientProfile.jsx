@@ -1,6 +1,7 @@
 import React from 'react'
 import Doctorprofile from '../DoctorDashboard/Doctorprofile'
 import PatientNavbar from '../PatientDashboard/PatientNavbar'
+import Patientprofilecard from '../PatientDashboard/Patientprofilecard'
 import "../Patientprofile/Patientprofile.css"
 
 function PatientProfile() {
@@ -9,7 +10,7 @@ function PatientProfile() {
       <PatientNavbar/>
     <div className='patient_profile_container'>
       
-        <Doctorprofile className='PatientProfile'/>
+        <Patientprofilecard className='PatientProfile'/>
     </div>
     </div>
   )

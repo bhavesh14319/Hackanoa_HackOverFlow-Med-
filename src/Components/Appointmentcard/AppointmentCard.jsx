@@ -3,7 +3,6 @@ import "../PatientDashboardCss/PatientHome.css"
 import swal from 'sweetalert';
 
 function AppointmentCard() {
-    console.log(window.location)
   const AppointmentModal = ( ) =>{
     swal({
       text: "Hello world!",
