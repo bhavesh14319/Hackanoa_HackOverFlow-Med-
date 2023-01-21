@@ -12,6 +12,7 @@ import PatientLogin from "../src/Components/PatientLogin"
 import PatientProfile from "../src/Components/Patientprofile/PatientProfile"
 import PatientRegistration from "../src/Components/PatientRegistration"
 import DoctorRegistration from "../src/Components/DoctorRegistration"
+import BookAppointment from "./Components/BookAppointment/BookAppointment";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               userstate && userstate._id ? (
@@ -32,7 +33,7 @@ function App() {
                 <Login setUserState={setUserState} />
               )
             }
-          ></Route>
+          ></Route> */}
           <Route
             path="/Doctor/Login"
             element={<DoctorLogin setUserState={setUserState} />}
@@ -47,6 +48,7 @@ function App() {
           <Route path="/Doctor/home" element={<Home />}></Route>
           <Route path="/Patient/home" element={<PatientHome />}></Route>
           <Route path="/Doctor/home/appointments" element={<Appointments/>}></Route>
+          <Route path="/Patient/BookAppointment" element={<BookAppointment/>}></Route>
         </Routes>
       </Router>
     </div>

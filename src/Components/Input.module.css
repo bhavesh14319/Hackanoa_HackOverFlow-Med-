@@ -1,14 +1,15 @@
 .inputBar {
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid lightgrey;
   outline: none;
   color: #1d2129;
-  margin: 5% 0;
-  width: 20vw;
+
+  /* width: 20vw; */
   padding: 10px;
-  font-size: clamp(14px, 1.3vw, 20px);
+  font-size: 20px;
+  width: 90%;
 }
 
 ::placeholder {
-  text-align: center;
+  text-align: left;
 }

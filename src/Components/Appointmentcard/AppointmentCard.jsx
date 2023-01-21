@@ -3,7 +3,8 @@ import "../PatientDashboardCss/PatientHome.css"
 import swal from 'sweetalert';
 import {  useLocation } from 'react-router-dom';
 
-function AppointmentCard() {
+
+function AppointmentCard(props) {
   
   var btns = false;
     // if(window.location.href=="http://localhost:3000/patient/home"){
@@ -25,8 +26,11 @@ function AppointmentCard() {
       text: "Hello world!",
     });
   }
+
+  console.log(props.prop?.redabledateTime?.date)
+
     return (
-        <div onClick={()=>{AppointmentModal()}} className='smAppointmentCard'>
+        <div className='smAppointmentCard'>
            {
               btns
               ?
@@ -41,11 +45,11 @@ function AppointmentCard() {
                   </div>
                 </div>
               :<>
-                <span>Patient Name</span>
-                <span>Date </span>
+                <span>{props?.prop?.patient?.firstName} </span>
+                <span>{props.prop?.redabledateTime?.date}</span>
                  <span>
-                  <button className='approve'>Approve</button>
-                  <button className='reject'>Reject</button>
+                  <button onClick={()=>{AppointmentModal()}} className='approve'>Approve</button>
+                  <button onClick={()=>{AppointmentModal()}} className='reject'>Reject</button>
                 </span>
                 <p>Status</p></>
           }
@@ -54,4 +58,4 @@ function AppointmentCard() {
       )
 }
 
-export default AppointmentCard;
+export default AppointmentCard

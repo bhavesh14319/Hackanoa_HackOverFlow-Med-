@@ -1,13 +1,50 @@
-import { Avatar } from "@mui/material";
-import React from "react";
-import "../DoctoDashboardCss/Home.css";
-import "../PatientDashboardCss/PatientHome.css";
-import Navbar from "./Navbar";
-import logo from "../../Assets/logo.png";
-import AppointmentCard from "../Appointmentcard/AppointmentCard";
-import Doctorprofile from "../DoctorDashboard/Doctorprofile";
+import { Avatar } from '@mui/material'
+import React from 'react'
+import "../DoctoDashboardCss/Home.css"
+import "../PatientDashboardCss/PatientHome.css"
+import Navbar from './Navbar'
+import logo from "../../Assets/logo.png"
+import AppointmentCard from '../Appointmentcard/AppointmentCard'
+import Doctorprofile from "../DoctorDashboard/Doctorprofile"
+import axios from '../../axios';
+import {useState,useEffect} from 'react';
 
 const Home = () => {
+
+  const[data,setData]=useState({});
+  const[appointmentData,setAppointmentData]=useState([]);
+
+  useEffect(()=>{
+    let data = JSON.parse(sessionStorage.getItem("Doctor Data"));
+    console.log(data);
+    if (data) {
+      setData(data);
+    }
+  },[]);
+
+
+
+  const getAppointmentDetails = async() =>{
+    const response = await axios({
+      method: "GET",
+      headers: { 
+        'Authorization': `Bearer ${data.token}`
+      },
+      url: encodeURI("d/approve?status=pending")
+
+    }).catch((error) => console.log(error));
+    if(response){
+      setAppointmentData(response.data.data);
+      // console.log(response.data.data);
+      // console.log(appointmentData
+    }
+  }
+
+  useEffect(()=>{
+    getAppointmentDetails();
+  },[data]);
+
+
   return (
     <div className="Home_body">
       <Navbar />
@@ -32,38 +69,37 @@ const Home = () => {
                         <p className='Doctor_InfoContainer_Item'><span className='Doctor_InfoContainer_Item_Span' >Specializations: </span><span className='Doctor_InfoContainer_Item_Span' >Cardiologist</span></p>
 
                     </div>  */}
-          <Doctorprofile />
-        </div>
-        <div className="Home_bodyContainer_RHS">
-          <div className="appointment_activity_area">
-            <div className="appointment_counts">
-              <div className="active_count">
-                <div className="active_card">
-                  <p>Active Appointments</p>
-                  <br></br>
-                  <p>10</p>
-                </div>
-              </div>
-              <div className="pending_count">
-                <div className="pending_card">
-                  <p>Pending Appointments</p>
-                  <br></br>
-                  <p> 10</p>
-                </div>
-              </div>
+                    <Doctorprofile/>
 
-              <p>Appointments Requests</p>
-
-              <div className="pending_appointments_request">
-                <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
-              </div>
             </div>
-          </div>
+            <div className='Home_bodyContainer_RHS'>
+              <div className='appointment_activity_area'>
+                <div className='appointment_counts'>
+                  <div className='active_count'>
+                    <div className='active_card'>
+                      <p>Active Appointments</p><br></br>
+                      <p>10</p>
+                    </div>
+                  </div>
+                  <div className='pending_count'>
+                    <div className='pending_card'>
+                    <p>Pending Appointments</p><br></br>
+                      <p> 10</p>
+                    </div>
+                  </div>
+
+                <p>Appointments Requests</p>
+                  
+              <div className='pending_appointments_request'>
+                {appointmentData?.map(app =>{
+                  return <AppointmentCard prop={app} />
+                }) }
+            
+    
+              </div>
+                </div>
+              </div>
+            
           <div className="doctor_appointmnet_calendar">
             <p>Upcoming Appointments Schedules</p>
             <div className="calendar_grid">
@@ -186,9 +222,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
+        </div>
   );
 };
 
-export default Home;
+export default Home
