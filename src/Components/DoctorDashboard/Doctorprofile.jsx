@@ -1,20 +1,57 @@
 import React from "react";
 import "../DoctoDashboardCss/Doctorprofile.css"
+import { useState, useEffect } from "react";
+import axios from "../../axios";
 
 function Doctorprofile() {
+
+  const[data,setData]=useState({});
+  const[doctorData,setDoctorData]=useState({});
+
+  useEffect(()=>{
+    let data = JSON.parse(sessionStorage.getItem("Doctor Data"));
+    
+    console.log(data);
+    if (data) {
+      setData(data);
+    }
+  },[])
+
+  
+
+  const getDoctorDetails = async () =>{
+    const response = await axios({
+      method: "GET",
+      headers: { 
+        'Authorization': `Bearer ${data.token}`
+      },
+      url: encodeURI("d/profile")
+
+    }).catch((error) => console.log(error));
+    if(response){
+      setDoctorData(response.data.data);
+      console.log(response.data.data.hospital);
+    }
+  }
+
+  useEffect(()=>{
+    getDoctorDetails();
+  },[data])
+
+
   return (
     <div className="profile-card">
       <div className="profile-card-header">
         <div className="profile-image"></div>
 
         <div className="profile-info">
-          <h3 className="profile-name">Javed Ali</h3>
-          <h3 className="profile-email">javedali1009@gmail.com</h3><hr></hr>
+          <h3 className="profile-name">{doctorData.firstName}</h3>
+          <h3 className="profile-email">{doctorData.email}</h3><hr></hr>
           <div className="profile-desc">
-            <p><span>Username:</span> <span>javedali@281</span></p>
-            <p><span>Mobile:</span> <span>5415689154</span></p>
-            <p><span>Working At:</span> <span>alibaug Hospital</span></p>
-            <p><span>Specialization:</span> <span>Cardiologist</span></p>
+            <p><span>Registration No:</span> <span>{doctorData.regNo}</span></p>
+            <p><span>Mobile:</span> <span>{doctorData.mobileNumber}</span></p>
+            <p><span>Working At:</span> <span>{doctorData.hospital?.name}</span></p>
+            <p><span>Specialization:</span> <span>{doctorData.specialization}</span></p>
           </div>
         </div><hr></hr>
       </div>

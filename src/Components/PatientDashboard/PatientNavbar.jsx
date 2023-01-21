@@ -4,6 +4,7 @@ import logo from "../../Assets/logo.png"
 import logo1 from "../../Assets/i.png"
 import "../PatientDashboardCss/PatientNav.css"
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 import {useNavigate} from "react-router-dom"
 
 
@@ -22,11 +23,11 @@ const PatientNavbar = () => {
     {smallScreen &&
      <>
         <div className='Patient_smNavContainer'>
+            <Link to="/Patient/Home">
             <div className="Patient_smNavContainer_logo">
                  <img src={logo1} alt="" />
-
-                
             </div>
+            </Link>
             <div className="Patient_smNavContainer_MenuIcon"  onClick={()=>{toggleNav()}}>
                 <MenuIcon className="MenuIcon" />
             </div>

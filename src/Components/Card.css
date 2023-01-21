@@ -12,10 +12,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png");
+  padding: 25px 0;
 }
 
 .mainCard {
-  text-align: center;
+  /* text-align: center; */
   margin: 30px auto;
   background-color: #ffffff;
   padding-top: 30px;
@@ -23,19 +24,23 @@
   box-shadow: 0 2px 4px rgb(0 0 10 / 64%), 0 8px 16px rgb(0 10 0 / 34%);
   /* box-shadow: 10px 10px 15px #12908e; */
   height: fit-content;
-  border-radius: 8px;
-  width: clamp(300px, 30vw, 30vw);
+  border-radius: 10px;
+  /* width: clamp(300px, 30vw, 30vw); */
+  max-width: 80vw;
+  width: 80vw;
+  padding: 20px;
   height: clamp(340px, calc(30vw + 40px), max-fit);
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 
 .mainCard h1 {
   color: #000;
   padding: 20px;
-  font-size: clamp(18px, 2.3vw, 34px);
+  font-size: 35px;
+  text-align: center;
 }
 
 .otp {
@@ -53,12 +58,16 @@
   border: none;
   font-size: 22px;
   border-radius: 15px;
-  margin: 0.5rem 0 2rem;
-  width: 20vw;
+  margin-top: 20px;
+  /* margin: 0.5rem 0 2rem; */
+  width: 100%;
 }
 
 label {
-  font-size: clamp(14px, 1.3vw, 20px);
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: fit-content;
 }
 
 .otp .inputStyle {
@@ -67,4 +76,5 @@ label {
   height: 2rem;
   border: 2px solid lightgrey;
   border-radius: 5px;
+  width: 100%;
 }

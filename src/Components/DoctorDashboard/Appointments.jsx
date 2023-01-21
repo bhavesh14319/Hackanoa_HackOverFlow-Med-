@@ -5,6 +5,7 @@ import AppointmentCard from "../Appointmentcard/AppointmentCard";
 import Doctorprofile from "../DoctorDashboard/Doctorprofile";
 import Navbar from "./Navbar";
 
+
 function Appointments() {
   return (
     <div className="Home_body">
