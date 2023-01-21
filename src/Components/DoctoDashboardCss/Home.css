@@ -83,12 +83,15 @@
 }
 .pending_appointments_request{
     background-color: #e8f1f2;
-    height:45vh;
-    border-radius: 10px;
-    max-height: 315px;
+    height: 70vh;
+    border-radius: 14px;
+    /* max-height: 451px; */
     overflow-y: scroll;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 60%);
-    
+}
+.appointments_track{
+    display: flex;
+    flex-direction: row;
 }
 .appointment_activity_area p{
     text-align: center;
@@ -108,8 +111,9 @@
     height: 20%;
 }
 .active_count,.pending_count{
-    height: 140px;
-    margin: 10px 0;
+    height: 70px;
+    width: 45%;
+    margin: 10px auto;
 }
 .active_card{
     border: 2px solid #18C278;

@@ -37,20 +37,7 @@ const Home = () => {
         <div className="Home_bodyContainer_RHS">
           <div className="appointment_activity_area">
             <div className="appointment_counts">
-              <div className="active_count">
-                <div className="active_card">
-                  <p>Active Appointments</p>
-                  <br></br>
-                  <p>10</p>
-                </div>
-              </div>
-              <div className="pending_count">
-                <div className="pending_card">
-                  <p>Pending Appointments</p>
-                  <br></br>
-                  <p> 10</p>
-                </div>
-              </div>
+              
 
               <p>Appointments Requests</p>
 
@@ -61,6 +48,20 @@ const Home = () => {
                 <AppointmentCard />
                 <AppointmentCard />
                 <AppointmentCard />
+              </div>
+              <div className="appointments_track">
+                <div className="active_count">
+                  <div className="active_card">
+                    <p>Active Appointments</p>
+                    <p>10</p>
+                  </div>
+                </div>
+                <div className="pending_count">
+                  <div className="pending_card">
+                    <p>Pending Appointments</p>
+                    <p> 10</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
