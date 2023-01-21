@@ -1,7 +1,7 @@
 import React from "react";
 import "./hospitals.css";
 
-function Hospitalcard(props) {
+function MedicalCard(props) {
   return (
     <div>
       <div className="google_card">
@@ -18,8 +18,8 @@ function Hospitalcard(props) {
               <p>Address:{props.prop?.address}</p>
               <p>city:{props.prop?.city}</p>
               <p>pincode:{props.prop?.pincode}</p>
-              <p>no.of beds{props.prop?.noOfBeds}:</p>
-              <p>no.of doctors:{props.prop?.noOfDoctors}</p>
+              <p>Opens at:{props.prop?.startTime}:</p>
+              <p>Closes at:{props.prop?.endTime}</p>
               <p>Contact no.:{props.prop?.contactNumber}</p>
             </div>
           </div>
@@ -29,4 +29,4 @@ function Hospitalcard(props) {
   );
 }
 
-export default Hospitalcard;
+export default MedicalCard;
