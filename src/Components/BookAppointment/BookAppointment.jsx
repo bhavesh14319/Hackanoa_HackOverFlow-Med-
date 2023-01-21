@@ -237,7 +237,8 @@ const BookAppointment = () => {
         if(predicted){
             swal(
                 {
-                    text: `Model Prediction : ${predicted.predicted_disease}`
+                    title: `Model Prediction : ${predicted.predicted_disease}`,
+                    text :  "Note this is not 100% accurate and machine generated result.\n consult with doctor before any medication"
                 }
             )
         }
