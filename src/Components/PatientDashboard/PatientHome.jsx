@@ -16,6 +16,7 @@ const PatientHome = () => {
     const smallScreen = useMediaQuery('(max-width:600px)');
     const[data,setData]=useState({});
     const[patientData,setPateintData]=useState({});
+    const [appointments,setAppointMents] = useState([]);
 
     const AppointmentModal = ( ) =>{
       swal({
@@ -23,14 +24,29 @@ const PatientHome = () => {
       });
     }
 
-    const AppointmentCard = () =>{
+    const AppointmentCard = ({DoctorName,AppointmentDate,AppointmentStatus}) =>{
       return (
         <div onClick={()=>{AppointmentModal()}} className='smAppointmentCard'>
-          <span>Patient Name</span>
-          <span>Date </span>
-          <span>Status</span>
+          <span>{DoctorName}</span>
+          <span>{AppointmentDate}</span>
+          <span>{AppointmentStatus}</span>
         </div>
       )
+    }
+
+    const getAppointments = async () =>{
+      const response = await axios({
+        method: "GET",
+        url: encodeURI("p/book"),
+        headers:{
+          'Authorization' : `Bearer ${data.token}`
+        }
+      }).catch((error) => console.log(error));
+
+      if(response){
+        console.log(response.data);
+        setAppointMents(response.data.data);
+      }
     }
     
 
@@ -39,10 +55,14 @@ const PatientHome = () => {
       if (data) {
         setData(data);
       }
+
+     
+
     },[])
 
     useEffect(()=>{
       getPatientDetails();
+      getAppointments();
     },[data])
 
     const getPatientDetails = async () =>{
@@ -83,10 +103,16 @@ const PatientHome = () => {
                 <hr className='Section_Divider'/>
                 <h2 className='Appintment_Lable'>Your Appointmets</h2>
                 <div className='Patient_AppointmentContainer'>
+                  {appointments && appointments?.map((appointment)=>{
+                    return(
+                      <AppointmentCard DoctorName={appointment.doctor.firstName + " "+ appointment.doctor.lastName} AppointmentDate={appointment.redabledateTime.date}
+                       AppointmentStatus={appointment.status} />
+                    )
+                  })}
+                    {/* <AppointmentCard />
                     <AppointmentCard />
                     <AppointmentCard />
-                    <AppointmentCard />
-                    <AppointmentCard />
+                    <AppointmentCard /> */}
                     <p className='ShowMoreBtn'>Show More</p>
                 </div>
 

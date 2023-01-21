@@ -6,6 +6,7 @@ import { InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import DatePicker from 'react-date-picker';
 import { useEffect } from 'react';
+import axios from '../../axios';
 
 
 const BookAppointment = () => {
@@ -16,16 +17,63 @@ const BookAppointment = () => {
     const [date, change] = useState(new Date());
     const [current,setCurrent]=useState(0);
     const[questArray,setQuestArray] = useState([]);
+    const [hospitals,setHospitals]=useState();
+    const [doctors,setDoctors]=useState();
+    const [doctorId,setDoctorId]=useState(0);
+    const[data,setData]=useState({});
 
-    const [hospitals,setHospitals]=useState({});
 
     useEffect(()=>{
 
+        if(hospitals?.length > 0){
+            let doct = [];
+            
+            hospitals.map((hospital)=>{
+                // console.log(hospital);
+                if(hospital.doctors.length>0){
+                    doct= doct.concat(hospital.doctors);
+                }
+            })
+
+            setDoctors(doct);
+
+
+        }
+    },[hospitals])
+
+    useEffect(()=>{
+        let data = JSON.parse(sessionStorage.getItem("Patient Data"));
+        if (data) {
+          setData(data);
+        }
+      },[])
+
+    useEffect(()=>{
+        const getHospitals = async ()=>{
+            const response = await axios({
+                method: "GET",
+                url: encodeURI("hospital"),
+              }).catch((error) => console.log(error));
+
+              if(response){
+                console.log(response.data);
+                setHospitals(response.data.data);
+              }
+        }
+        
+        getHospitals();
     },[])
+
+    useEffect(()=>{
+        let data = JSON.parse(sessionStorage.getItem("Patient Data"));
+        if (data) {
+          setData(data);
+        }
+      },[])
     
     const [vitals,setVitals] =useState({
-       0: {vital: "sweating",status : 0},
-       1: {vital: "breathlessness",status : 0},
+       0: {vitals: "sweating",status : 0},
+       1: {vitals: "breathlessness",status : 0},
        2: {vitals:"continuous_feel_of_urine",status  : 0},
        3 :{vitals:"bladder_discomfort",status  : 0},
        4 :{vitals:"burning_micturition" ,status : 0},
@@ -104,23 +152,70 @@ const BookAppointment = () => {
         }
         console.log(no.checked);
 
-        console.log(vitals);
+        // console.log(vitals);
     }
 
-    const handleBookNow = () =>{
+    const createDate =()=>{
+        let tempdate = new Date(date);
+        let newdate= tempdate.getFullYear()+"-"+tempdate.getMonth()+1 +"-"+tempdate.getDate(); 
+        console.log(newdate.toString());
+        return newdate.toString();
+    }
+
+    const handleBookNow = async() =>{
         let modal = document.getElementById('modal-container');
         modal.style.display="block";
 
         //api call for modal
 
+
+
         // api call for appointment booking
+        console.log(data.token);
+        const bookingResponse = axios({
+            method: "POST",
+            url: encodeURI("p/book"),
+            headers: { 
+                'Authorization': `Bearer ${data.token}`
+              },
+            data: {
+                date:createDate(),
+                doctorId:doctorId,
+            },
+          }).catch((error) => console.log(error));
+
+          if(bookingResponse){
+            console.log(bookingResponse);
+          }
+
+    }
+
+    const getDestructuredJson = () =>{
+        let b  = Object.values(vitals);
+        console.log(b);
+        let c ={};
+        b.forEach(x => {
+            c[x.vitals]=x.status
+        });
+        console.log(c);
+        return c;
+    }
+
+    const modelApiCall = () =>{
+
     }
 
     const closeModal = ()=>{
         let modal = document.getElementById('modal-container');
+        let vitals =getDestructuredJson();
+        modelApiCall();
         modal.style.display="none";
     }
 
+    const getDoctorData = (doctor) =>{
+        setDoctorId(doctor.id);
+        // alert(doctorId)
+    }
     return (
         <>
             {smallScreen &&<>
@@ -181,9 +276,11 @@ const BookAppointment = () => {
                                 className='SelectInput'
                                 onChange={handleChangeHospital}
                             >
-                                <MenuItem value={"H1"}>H1</MenuItem>
-                                <MenuItem value={"H2"}>H2</MenuItem>
-                                <MenuItem value={"H3"}>H3</MenuItem>
+                                {hospitals?.map((hospital)=>{
+                                    return (
+                                        <MenuItem value={`${hospital.name}`}>{hospital.name}</MenuItem>
+                                    )
+                                })}
                             </Select>
 
                             <p className='Input_Lable'>Select Doctor: </p>
@@ -195,12 +292,16 @@ const BookAppointment = () => {
                                 className='SelectInput'
                                 onChange={handleChangeDoctor}
                             >
-                                <MenuItem value={"D1"}>D1</MenuItem>
-                                <MenuItem value={"D2"}>D2</MenuItem>
-                                <MenuItem value={"D3"}>D3</MenuItem>
+                                {doctors?.map((doctor)=>{
+                                    return ( 
+                                        // <div onClick={()=>{getDoctorData(doctor)}}>
+                                        <MenuItem onClick={()=>{getDoctorData(doctor)}} value={`${doctor.firstName + " " + doctor.lastName}`}>{doctor.firstName + " " + doctor.lastName}</MenuItem>
+                                        // </div>
+                                    )
+                                })}
                             </Select>
 
-
+                            
 
 
                             <button className='Book-Btn' onClick={()=>{handleBookNow()}}>Book Now</button>
