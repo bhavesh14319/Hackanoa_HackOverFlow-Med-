@@ -12,7 +12,7 @@ function Hospitalcard(props) {
           ></iframe>
           <div class="container">
             <h4>
-              <b>{props.prop.name}</b><hr></hr>
+              <b>{props.prop?.name}</b><hr></hr>
             </h4>
             <div className="hospital_detail">
               <p>Address:{props.prop?.address}</p>
