@@ -148,9 +148,9 @@ const BookAppointment = () => {
         }
 
         if(current==questArray.length-1){
-
+            
         }
-        console.log(no.checked);
+   
 
         // console.log(vitals);
     }
@@ -167,6 +167,15 @@ const BookAppointment = () => {
         modal.style.display="block";
 
         //api call for modal
+        const modelResponse = axios({
+            method:"POST",
+            url :encodeURI("http://192.168.215.132:5000/predict_api"),
+            data : getDestructuredJson(),
+        }).catch((error) => console.log(error));
+
+        if(modelResponse){
+            console.log(modelResponse);
+        }
 
 
 
