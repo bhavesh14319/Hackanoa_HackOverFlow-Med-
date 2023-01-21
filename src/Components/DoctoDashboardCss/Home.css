@@ -83,12 +83,15 @@
 }
 .pending_appointments_request{
     background-color: #e8f1f2;
-    height:45vh;
-    border-radius: 10px;
-    max-height: 315px;
+    height: 70vh;
+    border-radius: 14px;
+    /* max-height: 451px; */
     overflow-y: scroll;
     box-shadow: 0px 0px 10px rgb(0 0 0 / 60%);
-    
+}
+.appointments_track{
+    display: flex;
+    flex-direction: row;
 }
 .appointment_activity_area p{
     text-align: center;
@@ -108,12 +111,13 @@
     height: 20%;
 }
 .active_count,.pending_count{
-    height: 140px;
-    margin: 10px 0;
+    height: 70px;
+    width: 45%;
+    margin: 10px auto;
 }
 .active_card{
     border: 2px solid #18C278;
-    background-color: #32a85c !important;
+    background-color: #28D2D0 !important;
 }
 .pending_card{
     border: 2px solid  #E84042;
@@ -164,10 +168,10 @@
 }
 .calendar_card{
     text-align: center;
-    background-color: #0B8043;
+    background-color: #5EBC67;
     width: 100%;
     border-radius: 10px;
-    color: white;
+    color: black;
     border: 1px solid black;
 }
 .doctor_appointmnet_calendar > p{

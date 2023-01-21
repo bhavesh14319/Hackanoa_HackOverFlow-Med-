@@ -6,16 +6,53 @@ import Navbar from './Navbar'
 import logo from "../../Assets/logo.png"
 import AppointmentCard from '../Appointmentcard/AppointmentCard'
 import Doctorprofile from "../DoctorDashboard/Doctorprofile"
+import axios from '../../axios';
+import {useState,useEffect} from 'react';
 
 const Home = () => {
-  return (
-    <div className='Home_body'>
-        <Navbar/>
 
-        <div className='Home_bodyContainer'>
-            <div className='Home_bodyContainer_LHS'>
-              <p>Profile</p>
-                  {/* <h2>Hello Doctor, Rahul</h2>
+  const[data,setData]=useState({});
+  const[appointmentData,setAppointmentData]=useState([]);
+
+  useEffect(()=>{
+    let data = JSON.parse(sessionStorage.getItem("Doctor Data"));
+    console.log(data);
+    if (data) {
+      setData(data);
+    }
+  },[]);
+
+
+
+  const getAppointmentDetails = async() =>{
+    const response = await axios({
+      method: "GET",
+      headers: { 
+        'Authorization': `Bearer ${data.token}`
+      },
+      url: encodeURI("d/approve?status=pending")
+
+    }).catch((error) => console.log(error));
+    if(response){
+      setAppointmentData(response.data.data);
+      // console.log(response.data.data);
+      // console.log(appointmentData
+    }
+  }
+
+  useEffect(()=>{
+    getAppointmentDetails();
+  },[data]);
+
+
+  return (
+    <div className="Home_body">
+      <Navbar />
+
+      <div className="Home_bodyContainer">
+        <div className="Home_bodyContainer_LHS">
+          <p>Profile</p>
+          {/* <h2>Hello Doctor, Rahul</h2>
 
                    <div className='Doctor_DP'>
                          <Avatar sx={{ width: 150, height: 150 }} alt="Remy Sharp" src={logo} />
@@ -38,7 +75,7 @@ const Home = () => {
             <div className='Home_bodyContainer_RHS'>
               <div className='appointment_activity_area'>
                 <div className='appointment_counts'>
-                  <div className='active_count'>
+                  {/* <div className='active_count'>
                     <div className='active_card'>
                       <p>Active Appointments</p><br></br>
                       <p>10</p>
@@ -49,161 +86,145 @@ const Home = () => {
                     <p>Pending Appointments</p><br></br>
                       <p> 10</p>
                     </div>
-                  </div>
+                  </div> */}
 
                 <p>Appointments Requests</p>
                   
               <div className='pending_appointments_request'>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
-                <AppointmentCard/>
+                {appointmentData?.map(app =>{
+                  return <AppointmentCard prop={app} />
+                }) }
+            
+    
               </div>
                 </div>
               </div>
-              <div className='doctor_appointmnet_calendar'>
-                <p>Upcoming Appointments Schedules</p>
-                <div className='calendar_grid'>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+            
+          <div className="doctor_appointmnet_calendar">
+            <p>Upcoming Appointments Schedules</p>
+            <div className="calendar_grid">
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Kailash</p>
+                <p>Date: 28 Jun 2022</p>
+                <p>Time: 1-2 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+                <p>Date: 2 Jan 2022</p>
+                <p>Time: 7-9 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 18 dec 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: hari</p>
+                <p>Doctor's Name: rajesh</p>
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="calendar_card">
+                <p>Patient Name: Harbhajan</p>
+
+                <p>Date: 28 Jan 2022</p>
+                <p>Time: 4-5 pm</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
                     <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                  <div className='calendar_card'>
-                    <p>Patient Name: Harbhajan</p>
-                    <p>Doctor's Name: DJaved</p>
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p>
-                  </div>
-                </div>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
             </div>
+          </div>
         </div>
-    </div>
-  )
-}
+        </div>
+        </div>
+  );
+};
 
 export default Home
