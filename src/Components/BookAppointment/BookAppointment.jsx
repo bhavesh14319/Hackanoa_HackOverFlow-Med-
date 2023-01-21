@@ -7,6 +7,7 @@ import { useState } from 'react';
 import DatePicker from 'react-date-picker';
 import { useEffect } from 'react';
 import axios from '../../axios';
+import swal from 'sweetalert';
 
 
 const BookAppointment = () => {
@@ -21,6 +22,8 @@ const BookAppointment = () => {
     const [doctors,setDoctors]=useState();
     const [doctorId,setDoctorId]=useState(0);
     const[data,setData]=useState({});
+
+    const[predicted,setPredicted] = useState();
 
 
     useEffect(()=>{
@@ -148,9 +151,9 @@ const BookAppointment = () => {
         }
 
         if(current==questArray.length-1){
-
+            
         }
-        console.log(no.checked);
+   
 
         // console.log(vitals);
     }
@@ -167,7 +170,7 @@ const BookAppointment = () => {
         modal.style.display="block";
 
         //api call for modal
-
+        
 
 
         // api call for appointment booking
@@ -185,7 +188,7 @@ const BookAppointment = () => {
           }).catch((error) => console.log(error));
 
           if(bookingResponse){
-            console.log(bookingResponse);
+            console.log(bookingResponse.data);
           }
 
     }
@@ -202,6 +205,19 @@ const BookAppointment = () => {
     }
 
     const modelApiCall = () =>{
+        const modelResponse = axios({
+            method:"POST",
+            url :encodeURI("http://localhost:5000/predict_api"),
+            data : getDestructuredJson(),
+        }).catch((error) => console.log(error));
+
+        if(modelResponse){
+            modelResponse.then(response=>{
+                console.log(response.data);
+                setPredicted(response.data);
+            })
+        }
+
 
     }
 
@@ -216,6 +232,16 @@ const BookAppointment = () => {
         setDoctorId(doctor.id);
         // alert(doctorId)
     }
+
+    useEffect(()=>{
+        if(predicted){
+            swal(
+                {
+                    text: `Model Prediction : ${predicted.predicted_disease}`
+                }
+            )
+        }
+    },[predicted])
     return (
         <>
             {smallScreen &&<>
@@ -250,6 +276,7 @@ const BookAppointment = () => {
                     <>
                         <div className='EndContainer'>
                            <h2>Thanks You</h2> 
+                           
                             <button className='close-btn' id="close-btn" onClick={()=>{closeModal()}}>Close</button>
                         </div>
                     </>

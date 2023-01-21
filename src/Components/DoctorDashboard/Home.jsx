@@ -52,8 +52,8 @@ const Home = () => {
     }).catch((error) => console.log(error));
     if(response){
       setAppointmentData(response.data.data);
-      // console.log(response.data.data);
-      // console.log(appointmentData
+      console.log(response.data.data);
+      console.log(appointmentData)
     }
   }
 
@@ -128,8 +128,8 @@ const Home = () => {
                 <p>Appointments Requests</p>
                   
               <div className='pending_appointments_request'>
-                {appointmentData?.map(app =>{
-                  return <AppointmentCard prop={app} />
+                {appointmentData?.map((appointment) =>{
+                  return <AppointmentCard appointment={appointment} token={data.token} />
                 }) }
             
     
