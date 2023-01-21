@@ -1,0 +1,12 @@
+.prsecription_container{
+    display: flex;
+    flex-direction: row;
+}
+.prescription_area{
+    width: 50%;
+    height: 100%;
+    margin: 50px;
+}
+.prsecription_container .patient_vitals{
+    width: 50%;
+}
