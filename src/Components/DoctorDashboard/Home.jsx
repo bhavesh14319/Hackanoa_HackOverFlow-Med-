@@ -75,7 +75,7 @@ const Home = () => {
             <div className='Home_bodyContainer_RHS'>
               <div className='appointment_activity_area'>
                 <div className='appointment_counts'>
-                  <div className='active_count'>
+                  {/* <div className='active_count'>
                     <div className='active_card'>
                       <p>Active Appointments</p><br></br>
                       <p>10</p>
@@ -86,7 +86,7 @@ const Home = () => {
                     <p>Pending Appointments</p><br></br>
                       <p> 10</p>
                     </div>
-                  </div>
+                  </div> */}
 
                 <p>Appointments Requests</p>
                   
