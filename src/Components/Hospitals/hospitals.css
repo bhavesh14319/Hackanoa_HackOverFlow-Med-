@@ -65,7 +65,13 @@
 .hospital_detail{
     padding: 10px;
 }
-
+.heading{
+  text-align: center;
+  font-size: x-large;
+}
+.hospitals_patient .google_card{
+  margin: 30px 20px ;
+}
 .mainCont {
   /* background-color: #82a2ee; */
   background: linear-gradient(to right, #c6d6fa, #94b0f1);

@@ -6,12 +6,18 @@ import {  useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     var flag= false;
+    var flag2= false;
     let navigate = useNavigate();
     const location = useLocation();
     if(location.pathname=="/Doctor/home/appointments"){
         flag=true;
     }else{
         flag=false;
+    }
+    if(location.pathname=="/Doctor/hospitals"){
+        flag2=true;
+    }else{
+        flag2=false;
     }
     const navigator =()=>{
         if(flag){
@@ -34,6 +40,8 @@ const Navbar = () => {
                         flag === true?  <>
                             <p>Dashboard</p>
                             </>
+                            :
+                            flag2==true?" "
                             :
                             <p>Patients</p>
                     }

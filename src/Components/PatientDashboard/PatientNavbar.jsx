@@ -38,8 +38,8 @@ const PatientNavbar = () => {
                 <ul className='Patients_NavDrawer_Ul'>
                     <li onClick={()=>navigate("/Patient/Profile")} className='Patients_NavDrawer_Ul_Item'>Profile</li>
                     <li className='Patients_NavDrawer_Ul_Item'>Records</li>
-                    <li className='Patients_NavDrawer_Ul_Item'>Hospitals</li>
-                    <li className='Patients_NavDrawer_Ul_Item'>Medicals</li>
+                    <li onClick={()=>{navigate("/Patient/hospitals")}} className='Patients_NavDrawer_Ul_Item'>Hospitals</li>
+                    <li onClick={()=>{navigate("/Patient/hospitals")}} className='Patients_NavDrawer_Ul_Item'>Medicals</li>
                 </ul>
 
             </div>
