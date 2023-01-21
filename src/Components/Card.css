@@ -35,7 +35,12 @@
   /* align-items: center; */
   flex-direction: column;
 }
-
+@media only screen and (min-width: 600px) {
+  .mainCard {
+    width: 35vw;
+    /* height: 63vh; */
+  }
+}
 .mainCard h1 {
   color: #000;
   padding: 20px;
