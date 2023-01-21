@@ -64,3 +64,10 @@
 .hospital_detail{
     padding: 10px;
 }
+.heading{
+  text-align: center;
+  font-size: x-large;
+}
+.hospitals_patient .google_card{
+  margin: 30px 20px ;
+}

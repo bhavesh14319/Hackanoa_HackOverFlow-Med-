@@ -9,8 +9,11 @@ import Doctorprofile from "../DoctorDashboard/Doctorprofile"
 import axios from '../../axios';
 import {useState,useEffect} from 'react';
 import swal from 'sweetalert'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+  let navigate = useNavigate();
 
   const[data,setData]=useState({});
   const[appointmentData,setAppointmentData]=useState([]);
@@ -102,6 +105,9 @@ const Home = () => {
                     </div>  */}
                     <Doctorprofile/>
 
+                    <button onClick={()=>{navigate("/Patient/hospitals")}} className="hospital_button">
+            Go to Hospital's List
+          </button>
             </div>
             <div className='Home_bodyContainer_RHS'>
               <div className='appointment_activity_area'>

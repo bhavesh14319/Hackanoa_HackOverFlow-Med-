@@ -181,3 +181,15 @@
     font-weight:bolder;
     font-stretch: expanded;
 }
+.hospital_button{
+    position: absolute;
+    bottom: 2rem;
+    height: 50px;
+    width: 250px;
+    border-radius: 6px;
+    box-shadow: 1px 5px 5px 0px rgba(0,0,0,0.5);
+    font-size: 1.2rem;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}

@@ -15,6 +15,7 @@ import PatientRegistration from "../src/Components/PatientRegistration"
 import DoctorRegistration from "../src/Components/DoctorRegistration"
 import BookAppointment from "./Components/BookAppointment/BookAppointment";
 import Prescription from "./Components/DoctorDashboard/Prescription";
+import Hospitals_list_patient from "./Components/Hospitals/Hospitals_list_patient";
 
 
 function App() {
@@ -47,7 +48,8 @@ function App() {
           <Route path="Doctor/signup" element={<DoctorRegistration />}></Route>
           <Route path="Patient/signup" element={<PatientRegistration/>}></Route>
           <Route path="Patient/Profile" element={<PatientProfile/>}></Route>
-          <Route path="Patient/hospitals" element={<Hospitals_list/>}></Route>
+          <Route path="Doctor/hospitals" element={<Hospitals_list/>}></Route>
+          <Route path="Patient/hospitals" element={<Hospitals_list_patient/>}></Route>
           <Route path="/Doctor/home" element={<Home />}></Route>
           <Route path="/Patient/home" element={<PatientHome />}></Route>
           <Route path="/Doctor/home/appointments" element={<Appointments/>}></Route>
