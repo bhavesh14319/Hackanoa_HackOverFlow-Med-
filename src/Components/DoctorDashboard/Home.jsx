@@ -8,11 +8,27 @@ import AppointmentCard from '../Appointmentcard/AppointmentCard'
 import Doctorprofile from "../DoctorDashboard/Doctorprofile"
 import axios from '../../axios';
 import {useState,useEffect} from 'react';
+import swal from 'sweetalert'
 
 const Home = () => {
 
   const[data,setData]=useState({});
   const[appointmentData,setAppointmentData]=useState([]);
+  const [approvappData,setApprovAppData] = useState([]);
+
+  const AppointmentModal = (app ) =>{
+
+    const el = document.createElement('div')
+      el.classList.add('meet-text')
+      el.innerHTML = `Meeting Link <a href=https://${app.meetlink} target="_blank">${app.meetlink}</a`;
+
+    swal({
+      title:"Appointment Details",
+      text:`Patient Name:${app?.patient?.firstName}\n`,
+      content:el,
+      className:"appointment-modal"
+    });
+  }
 
   useEffect(()=>{
     let data = JSON.parse(sessionStorage.getItem("Doctor Data"));
@@ -21,8 +37,6 @@ const Home = () => {
       setData(data);
     }
   },[]);
-
-
 
   const getAppointmentDetails = async() =>{
     const response = await axios({
@@ -40,8 +54,25 @@ const Home = () => {
     }
   }
 
+  const getapprovAppDetails = async() =>{
+    const response = await axios({
+      method: "GET",
+      headers: { 
+        'Authorization': `Bearer ${data.token}`
+      },
+      url: encodeURI("d/approve?status=approved")
+
+    }).catch((error) => console.log(error));
+    if(response){
+      setApprovAppData(response.data.data);
+      console.log(response.data.data);
+      // console.log(appointmentData
+    }
+  }
+
   useEffect(()=>{
     getAppointmentDetails();
+    getapprovAppDetails();
   },[data]);
 
 
@@ -103,51 +134,34 @@ const Home = () => {
           <div className="doctor_appointmnet_calendar">
             <p>Upcoming Appointments Schedules</p>
             <div className="calendar_grid">
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Kailash</p>
-                <p>Date: 28 Jun 2022</p>
-                <p>Time: 1-2 pm</p>
-              </div>
-              <div className="empty_calendar_card">
-                {/* <p>Patient Name: Harbhajan</p>
-                     
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p> */}
-                <p>no meetings</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-                <p>Date: 2 Jan 2022</p>
-                <p>Time: 7-9 pm</p>
-              </div>
-              <div className="empty_calendar_card">
-                {/* <p>Patient Name: Harbhajan</p>
-                     
-                    <p>Date: 28 Jan 2022</p>
-                    <p>Time: 4-5 pm</p> */}
-                <p>no meetings</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
+            {approvappData?.map(app =>{
+                  return (
+                    <div onClick={()=>AppointmentModal(app)} className="calendar_card">
+                    <p>Patient Name:{app?.patient?.firstName}</p>
+                    <p>Date: {app?.redableStartDateTime?.date}</p>
+                    <p>Time: {app?.redableStartDateTime?.timeWithSec}-{app?.redableEndDateTime?.timeWithSec}</p>
+                    </div>
+                  )
+                })
+              
+                }
 
-                <p>Date: 18 dec 2022</p>
-                <p>Time: 4-5 pm</p>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
+             
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+            
               <div className="empty_calendar_card">
                 {/* <p>Patient Name: Harbhajan</p>
                      
@@ -162,11 +176,21 @@ const Home = () => {
                     <p>Time: 4-5 pm</p> */}
                 <p>no meetings</p>
               </div>
-              <div className="calendar_card">
-                <p>Patient Name: hari</p>
-                <p>Doctor's Name: rajesh</p>
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
+              
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
               <div className="empty_calendar_card">
                 {/* <p>Patient Name: Harbhajan</p>
@@ -175,17 +199,12 @@ const Home = () => {
                     <p>Time: 4-5 pm</p> */}
                 <p>no meetings</p>
               </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
-              </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
               <div className="empty_calendar_card">
                 {/* <p>Patient Name: Harbhajan</p>
@@ -194,23 +213,33 @@ const Home = () => {
                     <p>Time: 4-5 pm</p> */}
                 <p>no meetings</p>
               </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
-              <div className="calendar_card">
-                <p>Patient Name: Harbhajan</p>
-
-                <p>Date: 28 Jan 2022</p>
-                <p>Time: 4-5 pm</p>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
+              </div>
+              <div className="empty_calendar_card">
+                {/* <p>Patient Name: Harbhajan</p>
+                     
+                    <p>Date: 28 Jan 2022</p>
+                    <p>Time: 4-5 pm</p> */}
+                <p>no meetings</p>
               </div>
               <div className="empty_calendar_card">
                 {/* <p>Patient Name: Harbhajan</p>
