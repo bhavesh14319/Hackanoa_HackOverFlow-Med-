@@ -78,7 +78,7 @@ exports.Doctor_View_Appointment = async(req,res,next) =>{
 
       const doctor = req.userData;
       const {appointmentId} = req.query;
-      const {status} = req.body;
+      const {status} = req.query;
       let whereclause = {}
       whereclause.doctorId = doctor.id;
 
@@ -87,6 +87,7 @@ exports.Doctor_View_Appointment = async(req,res,next) =>{
       if(appointmentId)
             whereclause.id = appointmentId;
 
+           console.log(whereclause)
     try {
 
         const appointmentList = await allModels.Appointment_Model.findAll({
